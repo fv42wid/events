@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
-  
-  get 'sessions/new'
 
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
+  resources :events, only: [:new, :create, :show, :index]
   resources :users, only: [:new, :create, :show]
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

@@ -12,7 +12,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: {user: {name: "Frank", email: "frank@test.com", password: "wrong", password_confirmation: "password"} }
     end
     assert_template 'users/new'
-    assert_select 'a[href=?]', sessions_new_path
+    assert_select 'a[href=?]', '/login'
   end
 
   test "valid signup info" do
@@ -21,7 +21,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    assert_select 'a[href=?]', user_path
+    assert_select 'a[href=?]', '/logout'
     assert_select 'h1', 'Frank'
     assert_select 'p', 'frank@test.com'
   end

@@ -29,4 +29,11 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
+  test "valid event creation" do
+    log_in_as(users(:frank))
+    assert_difference 'Event.count', 1 do
+      post events_path, params: {event: {name: "Event1", location: "Home"} }
+    end
+  end
+
 end

@@ -5,10 +5,17 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.build(event_params)
+    @event = current_user.events.build(event_params)
+    if @event.save
+      flash[:success] = "Event Created!"
+      redirect_to @event
+    else
+      render 'new'
+    end
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def index

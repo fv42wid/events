@@ -15,3 +15,11 @@ class ActiveSupport::TestCase
     post login_path, params: {session: {email: user.email} }
   end
 end
+
+class ActionDispatch::IntegrationTest
+
+  #integration test login
+  def log_in_as(user)
+    post login_path, params: {session: {email: "frank@test.com"} }
+  end
+end

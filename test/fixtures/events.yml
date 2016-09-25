@@ -4,16 +4,16 @@ one:
   name: Event 1
   location: John's
   date: 2016-09-21
-  user: frank
+  creator: frank
 
 two:
   name: Event 2
   location: Plum
   date: 2016-09-21
-  user: frank
+  creator: frank
 
 three:
   name: Event 3
   location: Picasso
   date: 2016-09-22
-  user: frank
+  creator: frank

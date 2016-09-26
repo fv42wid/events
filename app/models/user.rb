@@ -8,4 +8,12 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+
+  def previous_events
+    self.attended_events.joins(:event).where("events.date < ?", DateTime.now)
+  end
+
+  def upcoming_events
+    self.attended_events.joins(:event).where("events.date > ?", DateTime.now)
+  end
 end

@@ -6,15 +6,19 @@
 <div class="row">
   <div class="col-md-6">
     <h3>Upcoming Events</h3>
-    <% @upcoming_events.each do |event| %>
-      <%= render event %>
-    <% end %>
+    <ul class="list-group" id="upcoming-events">
+      <% @upcoming_events.each do |event| %>
+        <%= render event %>
+      <% end %>
+    </ul>
   </div>
   <div class="col-md-6">
     <h3>Previous Events</h3>
-    <% @previous_events.each do |event| %>
-      <%= render event %>
-    <% end %>
+    <ul class="list-group" id="previous-events">
+      <% @previous_events.each do |event| %>
+        <%= render event %>
+      <% end %>
+    </ul>
   </div>
 </div>
 

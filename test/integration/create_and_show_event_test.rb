@@ -5,8 +5,10 @@ class CreateAndShowEventTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
-  def set
+  def setup
     @frank = users(:frank)
+    @attended_event = @frank.attended_events.new(event_id: events(:one).id)
+    @attended_event.save
   end
 
   test "create and display event" do
@@ -20,5 +22,11 @@ class CreateAndShowEventTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'events/show'
     assert_match event[:name], response.body
+  end
+
+  test "event should display attendees" do
+    @attended = events(:one)
+    get event_path(@attended)
+    assert_select "li>h3", "Frank"
   end
 end

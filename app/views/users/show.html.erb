@@ -4,10 +4,18 @@
     <p><%= @user.email %></p>
     <div class="row">
       <div class="col-md-12">
-	<h3>Attended Events</h3>
+	<h3>Upcoming Events</h3>
 	<% if @user.attended_events.any? %>
 	  <ul class="list-group" id="attended-events">
-	    <% @user.attended_events.each do |event| %>
+	    <% @user.upcoming_events.each do |event| %>
+	      <%= render partial: 'attended_events/user_attended', locals: {event: event} %>
+	    <% end %>
+	  </ul>
+	<% end %>
+	<h3>Previous Events</h3>
+	<% if @user.previous_events.any? %>
+	  <ul class="list-group" id="previous-events">
+	    <% @user.previous_events.each do |event| %>
 	      <%= render partial: 'attended_events/user_attended', locals: {event: event} %>
 	    <% end %>
 	  </ul>

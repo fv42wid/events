@@ -17,3 +17,15 @@ three:
   location: Picasso
   date: 2016-09-22
   creator: frank
+
+old:
+  name: Old Event
+  location: Nowhere
+  date: 2016-09-22
+  creator: frank
+
+upcoming:
+  name: Upcoming
+  location: Future
+  date: <%= 10.days.from_now.to_datetime %>
+  creator: frank

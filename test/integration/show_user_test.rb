@@ -28,4 +28,18 @@ class ShowUserTest < ActionDispatch::IntegrationTest
     get user_path(@frank)
     assert_select "li>h3", "Joe's"
   end
+
+  test "should display upcoming events" do
+    @frank_attend = @frank.attended_events.new(event_id: events(:upcoming).id)
+    @frank_attend.save
+    get user_path(@frank)
+    assert_select "ul#attended-events>li>h3", "Upcoming"
+  end
+
+  test "should display previous events" do
+    @frank_attend = @frank.attended_events.new(event_id: events(:old).id)
+    @frank_attend.save
+    get user_path(@frank)
+    assert_select "ul#previous-events>li>h3", "Old Event"
+  end
 end

@@ -7,6 +7,9 @@ class ShowUserTest < ActionDispatch::IntegrationTest
   
   def setup
     @frank = users(:frank)
+    @joe = users(:joe)
+    @joes_event = @joe.events.new(name: "Joe's", location: "home", date: "2016-10-10")
+    @joes_event.save
   end
 
   test "should display users and events" do
@@ -17,5 +20,12 @@ class ShowUserTest < ActionDispatch::IntegrationTest
     @frank.events.each do |event|
       assert_match event.name, response.body
     end
+  end
+
+  test "should display events user is attending" do
+    @frank_attending = @frank.attended_events.new(event_id: @joes_event.id)
+    @frank_attending.save
+    get user_path(@frank)
+    assert_select "li>h3", "Joe's"
   end
 end
